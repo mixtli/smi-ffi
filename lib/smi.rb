@@ -13,3 +13,13 @@ require 'smi/node'
 #  Smi::Wrapper.smiLoadModule("IF-MIB") 
 #end
 
+
+
+module Smi
+  def self.translate(name)
+    node = Smi::Node.get_node(name)
+    index = name.split(node.name).last
+    node.oid + index
+  end
+
+end

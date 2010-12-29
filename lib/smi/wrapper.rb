@@ -370,8 +370,8 @@ module Smi
   attach_function :smiGetNodeByOID, [ :uint, :pointer ], NiceFFI::TypedPointer(SmiNode)
   attach_function :smiGetFirstNode, [ :pointer, :uint ], NiceFFI::TypedPointer(SmiNode)
   attach_function :smiGetNextNode, [ :pointer, :uint ], NiceFFI::TypedPointer(SmiNode)
-  attach_function :smiGetParentNode, [ :pointer ], :pointer
-  attach_function :smiGetRelatedNode, [ :pointer ], :pointer
+  attach_function :smiGetParentNode, [ :pointer ], SmiNode.typed_pointer
+  attach_function :smiGetRelatedNode, [ :pointer ], SmiNode.typed_pointer
   attach_function :smiGetFirstChildNode, [ :pointer ], NiceFFI::TypedPointer(SmiNode)
   attach_function :smiGetNextChildNode, [ :pointer ], NiceFFI::TypedPointer(SmiNode)
   attach_function :smiGetNodeModule, [ :pointer ], :pointer

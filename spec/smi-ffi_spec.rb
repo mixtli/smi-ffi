@@ -6,7 +6,7 @@ Smi::Config.set_path(File.dirname(__FILE__) + '/mibs')
 Smi::Config.init(nil)
 #Smi::Wrapper.smiInit(nil)
 
-["IF-MIB", "RFC1213-MIB"].each do |m|
+["IF-MIB", "RFC1213-MIB", "IP-MIB"].each do |m|
   Smi::Config.load_module(m)
   #Smi::Wrapper.smiLoadModule(m)
 end
@@ -47,4 +47,22 @@ describe "Smi::Node" do
      node.children.first.name.should eql("ifIndex")
      node.children.last.name.should eql("ifSpecific")
    end
+   
+
+   it "should get node from leaf" do
+     node = Smi::Node.get_node("ifDescr.5")
+     node.name.should eql("ifDescr")
+     node.oid.should eql("1.3.6.1.2.1.2.2.1.2")
+   end
+
+   it "should translate oid" do
+     Smi.translate("ifDescr.5").should eql("1.3.6.1.2.1.2.2.1.2.5")
+   end
+
+   #it "should do stuff" do
+   #node = Smi::Node.get_node("ipAdEntIfIndex")
+   #puts node.struct.inspect
+   #related = Smi::Wrapper.smiGetRelatedNode(node.struct.pointer)
+   #puts related.inspect
+   #end
 end
