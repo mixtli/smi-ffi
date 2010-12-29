@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
      "lib/smi/module.rb",
      "lib/smi/node.rb",
      "lib/smi/wrapper.rb",
+     "smi-ffi.gemspec",
      "spec/mibs/IF-MIB",
      "spec/mibs/RFC1213-MIB",
      "spec/smi-ffi_spec.rb",
