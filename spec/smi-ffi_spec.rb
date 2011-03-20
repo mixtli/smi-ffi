@@ -59,6 +59,12 @@ describe "Smi::Node" do
      Smi.translate("ifDescr.5").should eql("1.3.6.1.2.1.2.2.1.2.5")
    end
 
+   it "should set index in get_node" do
+      node = Smi::Node.get_node("1.3.6.1.2.1.2.2.1.2.1")
+      node.oid.should eql("1.3.6.1.2.1.2.2.1.2")
+      node.index.should eql("1")
+   end
+
    #it "should do stuff" do
    #node = Smi::Node.get_node("ipAdEntIfIndex")
    #puts node.struct.inspect

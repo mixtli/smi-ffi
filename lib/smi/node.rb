@@ -1,7 +1,7 @@
 module Smi
   class Node
     extend Forwardable
-    attr_accessor :struct
+    attr_accessor :struct, :index
     def_delegators :@struct, :pointer, :name, :decl, :access, :status, :format, :value, :units, :description, :reference, :indexkind, :implied, :create, :nodekind
     def initialize(ptr)
       @struct = ptr
@@ -13,7 +13,9 @@ module Smi
     
     def self.get_node(oid)
       struct = Wrapper::smiGetNode(nil, oid)
-      new(struct)
+      n = new(struct)
+      n.index = oid.split("#{n.oid}.").last
+      n
     end
     
     def children

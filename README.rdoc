@@ -1,6 +1,19 @@
 = smi-ffi
 
-Description goes here.
+FFI wrapper around libsmi.  Useful for translating SNMP oids.  
+You should have libsmi installed, and a directory with any MIB files you want to use.
+
+# Set path to MIBs, initialize libsmi, and load the standard RFC1213 MIB
+Smi::Config.set_path('/usr/local/share/mibs')
+Smi::Config.init(nil)  # You MUST call this
+Smi::Config.load_module("RFC1213-MIB")
+
+# get the oid for sysDescr
+Smi.translate("sysDescr") => ".1.3.6.1.2.1.2.1.1"
+
+You may have to add smilib to LD_LIBRARY_PATH.  For example
+export LD_LIBRARY_PATH=/opt/local/lib
+
 
 == Note on Patches/Pull Requests
  
