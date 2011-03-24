@@ -5,32 +5,32 @@ You should have libsmi installed, and a directory with any MIB files you want to
 
 == USAGE
 
-# Set path to MIBs, initialize libsmi, and load the standard RFC1213 MIB
-Smi::Config.set_path('/usr/local/share/mibs')
-Smi::Config.init(nil)  # You MUST call this
-Smi::Config.load_module("RFC1213-MIB")
+  # Set path to MIBs, initialize libsmi, and load the standard RFC1213 MIB
+  Smi::Config.set_path('/usr/local/share/mibs')
+  Smi::Config.init(nil)  # You MUST call this
+  Smi::Config.load_module("RFC1213-MIB")
 
-# get the oid for sysDescr
-Smi.translate("sysDescr") => ".1.3.6.1.2.1.2.1.1"
+  # get the oid for sysDescr
+  Smi.translate("sysDescr") => ".1.3.6.1.2.1.2.1.1"
 
-# get a MIB node
-node = Smi::Node.get_node("ifIndex")
-puts node.name  # "ifIndex"
-puts node.oid   # "1.3.6.1.2.1.2.2.1.1"
-puts node.description # "Some verbose description"
+  # get a MIB node
+  node = Smi::Node.get_node("ifIndex")
+  puts node.name  # "ifIndex"
+  puts node.oid   # "1.3.6.1.2.1.2.2.1.1"
+  puts node.description # "Some verbose description"
 
-# get children of node
-node.children.each |child|
+  # get children of node
+  node.children.each |child|
     puts "#{child.name} - #{child.oid}"
-end
+  end
 
-# get a MIB module
-m = Smi::Module.get_module("RFC1213-MIB")
-node = m.get_nodes
+  # get a MIB module
+  m = Smi::Module.get_module("RFC1213-MIB")
+  node = m.get_nodes
 
 
 You may have to add smilib to LD_LIBRARY_PATH.  For example
-export LD_LIBRARY_PATH=/opt/local/lib
+  export LD_LIBRARY_PATH=/opt/local/lib
 
 
 == Note on Patches/Pull Requests
