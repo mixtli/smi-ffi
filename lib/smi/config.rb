@@ -10,7 +10,7 @@ module Smi
       end
       
       def error_level=(level)
-        Wrapper.setSmiErrorLevel(level)
+        Wrapper.smiSetErrorLevel(level)
       end
       def get_path
         Wrapper.smiGetPath()
