@@ -375,7 +375,7 @@ module Smi
   attach_function :smiGetFirstChildNode, [ :pointer ], NiceFFI::TypedPointer(SmiNode)
   attach_function :smiGetNextChildNode, [ :pointer ], NiceFFI::TypedPointer(SmiNode)
   attach_function :smiGetNodeModule, [ :pointer ], :pointer
-  attach_function :smiGetNodeType, [ :pointer ], :pointer
+  attach_function :smiGetNodeType, [ :pointer ], NiceFFI::TypedPointer(SmiType)
   attach_function :smiGetNodeLine, [ :pointer ], :int
   attach_function :smiGetFirstElement, [ :pointer ], :pointer
   attach_function :smiGetNextElement, [ :pointer ], :pointer
