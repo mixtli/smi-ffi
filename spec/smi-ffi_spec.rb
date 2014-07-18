@@ -6,7 +6,7 @@ Smi::Config.set_path(File.dirname(__FILE__) + '/mibs')
 Smi::Config.init(nil)
 #Smi::Wrapper.smiInit(nil)
 
-["IF-MIB", "RFC1213-MIB", "IP-MIB"].each do |m|
+["IF-MIB", "RFC1213-MIB", "IP-MIB", "HOST-RESOURCES-MIB", "SNMPv2-TC"].each do |m|
   Smi::Config.load_module(m)
   #Smi::Wrapper.smiLoadModule(m)
 end
@@ -65,10 +65,22 @@ describe "Smi::Node" do
       node.index.should eql("1")
    end
 
+   it "should return the node type" do
+      node = Smi::Node.get_node("1.3.6.1.2.1.2.2.1.2.1")
+      node.type.class.should eql(Smi::Node::Type)
+   end
+
    #it "should do stuff" do
    #node = Smi::Node.get_node("ipAdEntIfIndex")
    #puts node.struct.inspect
    #related = Smi::Wrapper.smiGetRelatedNode(node.struct.pointer)
    #puts related.inspect
    #end
+end
+
+describe Smi::Node::Type do
+  it "should return its format" do
+    node = Smi::Node.get_node("1.3.6.1.2.1.25.1.2")
+    node.type.format.should eql("2d-1d-1d,1d:1d:1d.1d,1a1d:1d")
+  end
 end
